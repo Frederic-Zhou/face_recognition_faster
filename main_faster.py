@@ -153,11 +153,13 @@ def faceloop(capIndex=0, Width=640, Height=480, model="hog", tolerance=0.5, numb
             # 画出一个带名字的标签，放在框下
             cv2.rectangle(frame, (left-2, bottom + 35), (right+2, bottom), mainColor,
                           cv2.FILLED)
-            frame = cv2ImgAddText(frame, "%s" % (name), left+6,
+            frame = cv2ImgAddText(frame, name, left+6,
                                   bottom+10, (255, 255, 255), 20)
 
         process_frame_index += 1
-        # 显示结果图像
+        # 加公司名显示结果图像
+        frame = cv2ImgAddText(frame, "贵州多恩谷网络科技 Dawngrp.com", 10,
+                              10, (50, 50, 50), 18)
         cv2.imshow('face recognition', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             isCapLoop = False
@@ -248,5 +250,4 @@ def main(argv):
 
 
 if __name__ == '__main__':
-
     main(sys.argv[1:])
