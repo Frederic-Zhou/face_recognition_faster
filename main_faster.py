@@ -14,6 +14,7 @@ import getopt
 import sys
 import pickle
 
+
 facename = "未知"
 isCapLoop = True
 total_image_name = []
@@ -115,7 +116,7 @@ def faceloop(capIndex=0, Width=640, Height=480, model="hog", tolerance=0.5, numb
                 # 得到匹配度最高的序号
                 best_match_index = numpy.argmin(face_distances)
 
-                # （重要）得有可能匹配的人脸
+                # （重要）得到有可能匹配的人脸
                 matches = face_recognition.compare_faces(
                     total_face_encoding, face_encoding, tolerance=tolerance)
 
@@ -195,7 +196,7 @@ def wscli(port=6789):
             wscli()
 
 
-def main(argv):
+def main():
 
     port = 0
     width = 640
@@ -207,7 +208,7 @@ def main(argv):
     number_of_times_to_upsample = 1
 
     try:
-        opts, args = getopt.getopt(argv, "hW:H:m:sp:c:t:n:", [])
+        opts, args = getopt.getopt(sys.argv[1:], "hW:H:m:sp:c:t:n:", [])
     except getopt.GetoptError:
         print('arg error')
         sys.exit(2)
@@ -250,4 +251,5 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+
+    main()
