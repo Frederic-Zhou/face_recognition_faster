@@ -51,11 +51,11 @@ def patchImages(staticdata=False):
                 if len(faceencodings) > 0:
                     total_face_encoding.append(faceencodings[0])
                     total_image_name.append(fn.split("."))  # 图片名字列表
-                    print("encode success")
+                    print("encode \033[1;32msuccess\033[0m")
                 else:
-                    print("encode fail")
+                    print("encode \033[1;31mfail\033[0m")
             else:
-                print("not image")
+                print("\033[1;33mnot image\033[0m")
         # 提取图片结束
         f = open('data_image_names.dat', 'wb')
         pickle.dump(total_image_name, f)
