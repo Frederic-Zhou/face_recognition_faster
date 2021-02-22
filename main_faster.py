@@ -42,12 +42,20 @@ def patchImages(staticdata=False):
 
     if not staticdata:
         for fn in os.listdir(path):  # fn 表示的是文件名q
-            print(path + "/" + fn)
+            print(path + "/" + fn + ": ", end='')
             if fn.split(".")[-1] in ["png", "jpg"]:
-                total_face_encoding.append(
-                    face_recognition.face_encodings(
-                        face_recognition.load_image_file(path + "/" + fn))[0])
-                total_image_name.append(fn.split("."))  # 图片名字列表
+
+                faceencodings = face_recognition.face_encodings(
+                    face_recognition.load_image_file(path + "/" + fn))
+
+                if len(faceencodings) > 0:
+                    total_face_encoding.append(faceencodings[0])
+                    total_image_name.append(fn.split("."))  # 图片名字列表
+                    print("encode success")
+                else:
+                    print("encode fail")
+            else:
+                print("not image")
         # 提取图片结束
         f = open('data_image_names.dat', 'wb')
         pickle.dump(total_image_name, f)
