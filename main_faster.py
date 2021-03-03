@@ -152,7 +152,7 @@ def faceloop(capIndex=0, Width=640, Height=480, model="hog", tolerance=0.5, numb
             global facename
             facename = "无"
             mainColor = (53, 67, 203)
-            if abs(abs(left-right)/2+left - w/2) < abs(left-right)/2 and abs(abs(top-bottom)/2+top - h/2) < abs(top-bottom)/2:
+            if abs(abs(left-right)/2+left - w/2) < abs(left-right) and abs(abs(top-bottom)/2+top - h/2) < abs(top-bottom):
                 if name != "未知":
                     mainColor = (99, 180, 40)
                 facename = name
